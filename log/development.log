@@ -1,0 +1,37 @@
+
+
+Started GET "/static_pages/home" for 127.0.0.1 at 2012-06-20 22:38:50 -0400
+Connecting to database specified by database.yml
+Processing by StaticPagesController#home as HTML
+  Rendered static_pages/home.html.erb within layouts/application (1.9ms)
+Compiled static_pages.css  (24ms)  (pid 77469)
+Compiled application.css  (31ms)  (pid 77469)
+Compiled jquery.js  (2ms)  (pid 77469)
+Compiled jquery_ujs.js  (0ms)  (pid 77469)
+Compiled static_pages.js  (76ms)  (pid 77469)
+Compiled application.js  (134ms)  (pid 77469)
+Completed 200 OK in 259ms (Views: 258.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/static_pages.css?body=1" for 127.0.0.1 at 2012-06-20 22:38:51 -0400
+Served asset /static_pages.css - 200 OK (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-06-20 22:38:51 -0400
+Served asset /application.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-06-20 22:38:51 -0400
+Served asset /application.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2012-06-20 22:38:51 -0400
+Served asset /static_pages.js - 200 OK (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-06-20 22:38:51 -0400
+Served asset /jquery.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-06-20 22:38:51 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (2ms)
