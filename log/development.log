@@ -226,3 +226,5 @@ Started GET "/static_pages/contact" for 127.0.0.1 at 2012-06-21 15:23:44 -0400
 Processing by StaticPagesController#contact as HTML
   Rendered static_pages/contact.html.erb within layouts/application (0.4ms)
 Completed 200 OK in 25ms (Views: 25.0ms | ActiveRecord: 0.0ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
