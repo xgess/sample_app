@@ -1,5 +1,5 @@
 
-include ApplicationHelper
+#include ApplicationHelper
 require 'spec_helper'
 
 
@@ -32,7 +32,7 @@ describe "Static pages" do
   describe "About page" do
     before { visit about_path }
     let(:heading) { 'About' }
-    let(:page_title) { 'About' }
+    let(:page_title) { 'About Us' }
     it_should_behave_like "all static pages"
   end
 
