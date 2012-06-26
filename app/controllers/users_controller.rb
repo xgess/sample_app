@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def show
 	 @user = User.find(params[:id])
+   @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   def create
@@ -58,15 +59,9 @@ class UsersController < ApplicationController
 
 
   private
-    
-    def signed_in_user
-      unless signed_in?
-        store_location
-        redirect_to signin_path, notice: "Please sign in."
-        #same as flash[:notice]=...
-        #works for error but NOT for success. not sure why though.
-      end
-    end
+
+  # moved signed_in_user to the sessions_helper
+    # so microposts controller can use it also
 
     def not_signed_in
       redirect_to root_path unless !signed_in?
