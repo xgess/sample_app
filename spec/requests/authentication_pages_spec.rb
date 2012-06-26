@@ -22,10 +22,10 @@ describe "Authentication" do
 		  it { should have_error_message('Invalid') }
 
 
-		describe "after visiting another page" do
-		  before { click_link "Home" }
-		  it { should_not have_selector('div.alert.alert-error') }
-		end
+  		describe "after visiting another page" do
+  		  before { click_link "Home" }
+  		  it { should_not have_selector('div.alert.alert-error') }
+  		end
 
     end
 
@@ -41,6 +41,24 @@ describe "Authentication" do
       it { should_not be_logged_out }
       it { should have_link('Settings', href: edit_user_path(user)) }
 
+      describe "redirect from unnecessary actions" do
+        describe "new or create action" do
+          before { visit signup_path }
+          it { should have_selector('h1', text: "Welcome to the Sample App") }
+          #got redirected back to the root
+        end
+      end
+
+
+      ################################################
+      describe "admin shouldnt be able to delete himself" do
+        before do
+          visit users_path
+        end
+        it { should_not have_link('delete', href: user_path(user)) }
+
+      end
+
 
     end
   end
@@ -50,6 +68,12 @@ describe "Authentication" do
 
     describe "for non-signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
+
+      describe "no personal links" do
+        it { should_not have_link('Profile') }
+        it { should_not have_link('Users') }
+        it { should_not have_link('Settings') }
+      end
 
       describe "when attempting to visit a protected page" do
         before do
@@ -88,7 +112,9 @@ describe "Authentication" do
         end
 
       end
+
     end
+
 
     describe "as wrong user" do
       let(:user) { FactoryGirl.create(:user) }
@@ -115,7 +141,17 @@ describe "Authentication" do
         before { delete user_path(user) }
         specify { response.should redirect_to(root_path) }
       end
+
+      it "should not allow access to admin" do
+        expect do
+          non_admin.update_attributes({ admin: TRUE })
+        end.should raise_error(ActiveModel::MassAssignmentSecurity::Error)
+      end    
+
     end
+
+
+
 
   end
 
