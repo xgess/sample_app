@@ -142,6 +142,17 @@ describe "Authentication" do
         before { put user_path(wrong_user) }
         specify { response.should redirect_to(root_path) }
       end
+
+      describe "deleting someone else's micropost" do
+        before do
+          FactoryGirl.create(:micropost, user: user, content: "micropost to delete")
+          valid_signin wrong_user
+          visit user_path(user)
+        end
+        it { should have_selector('span.content', text: 'micropost to delete') } 
+        it { should_not have_link('delete') }
+      end
+
     end
 
     describe "as non-admin user" do

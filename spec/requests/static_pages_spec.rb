@@ -33,6 +33,35 @@ describe "Static pages" do
           page.should have_selector("li##{item.id}", text: item.content)
         end
       end
+
+      describe "should show the correct number of microposts" do
+
+        describe "plural" do
+          it { should have_selector 'span', text:'2 microposts' }
+        end
+
+        describe "singular" do
+          before { click_link "delete" }
+          it { should have_selector 'span', text:'1 micropost' }
+        end
+      end
+
+      describe "pagination" do
+
+        before do
+          31.times { FactoryGirl.create(:micropost, user: user) }
+          visit root_path
+        end
+
+        it { should have_selector('div.pagination') }
+
+        it "should list each micropost" do
+          Micropost.paginate(page: 1).each do |micropost|
+            page.should have_selector('li', text: micropost.content)
+          end
+        end
+      end
+
     end
   end #home page
 

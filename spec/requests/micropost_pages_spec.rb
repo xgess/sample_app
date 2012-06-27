@@ -38,6 +38,8 @@ describe "Micropost Pages" do
 				expect { click_link "delete" }.should change(Micropost, :count).by(-1)
 			end
 		end
+
+
 	end
 	
 end
